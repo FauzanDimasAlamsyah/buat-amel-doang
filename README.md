@@ -1,1 +1,1 @@
-# buat-amel-doang
+dari orang yang mirip sung jin woo
