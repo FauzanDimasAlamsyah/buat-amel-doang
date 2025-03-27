@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Romantic Love Letter 💌</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Background Hearts -->
+    <div class="hearts-container"></div>
+
+    <!-- Amplop Surat (Bisa Klik untuk Buka & Tutup) -->
+    <div class="envelope" onclick="toggleLetter()">
+        <div class="flap"></div>
+        <div class="letter">
+            <p class="love-text"></p>
+        </div>
+    </div>
+
+    <!-- Musik Romantis -->
+    <audio id="love-music" loop>
+        <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mp3">
+    </audio>
+
+    <script>
+        let isOpen = false;
+
+        function toggleLetter() {
+            let envelope = document.querySelector('.envelope');
+            let music = document.getElementById("love-music");
+            let loveText = document.querySelector(".love-text");
+
+            if (isOpen) {
+                envelope.classList.remove('open');
+                music.pause();
+                music.currentTime = 0;
+                loveText.innerHTML = ""; // Hapus teks saat amplop ditutup
+            } else {
+                envelope.classList.add('open');
+                music.play();
+                typeText("I love you more than words can say... ❤️💖");
+            }
+
+            isOpen = !isOpen;
+        }
+
+        function typeText(text) {
+            let loveText = document.querySelector(".love-text");
+            loveText.innerHTML = "";
+            let i = 0;
+            let interval = setInterval(() => {
+                loveText.innerHTML += text[i];
+                i++;
+                if (i >= text.length) clearInterval(interval);
+            }, 100);
+        }
+
+        // Efek hati jatuh saat halaman dimuat
+        window.onload = function() {
+            for (let i = 0; i < 20; i++) {
+                let heart = document.createElement("div");
+                heart.classList.add("heart");
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.animationDuration = Math.random() * 2 + 3 + "s";
+                document.querySelector(".hearts-container").appendChild(heart);
+            }
+        };
+    </script>
+</body>
+</html>
